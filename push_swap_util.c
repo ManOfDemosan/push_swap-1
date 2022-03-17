@@ -6,11 +6,17 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 21:08:47 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/17 21:10:29 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/17 21:23:23 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	print_error(void)
+{
+	write(1, "Error\n", 6);
+	exit(0);
+}
 
 void	is_possible(char **str)
 {
@@ -25,15 +31,9 @@ void	is_possible(char **str)
 		{
 			if (!((str[i][j] >= '0' && str[i][j] <= '9') || \
 			(str[i][j] == '+' || str[i][j] == '-')))
-			{
-				write(1, "Error\n", 6);
-				exit(0);
-			}
+				print_error();
 			if (j > 0 && (str[i][j] == '+' || str[i][j] == '-'))
-			{
-				write(1, "Error\n", 6);
-				exit(0);
-			}
+				print_error();
 			j++;
 		}
 		i++;

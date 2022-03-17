@@ -6,7 +6,7 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:16:43 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/17 21:10:44 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/17 21:25:26 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,11 @@ int	ft_atoi(const char *str)
 	{
 		tmp = ret * 10 + str[i] - '0';
 		if (tmp < ret)
-			return ((minus + 1) / -2);
+			print_error();
 		ret = tmp;
 		i++;
 	}
+	if (ret >= INT_MAX || ret <= INT_MIN)
+		print_error();
 	return ((int)ret * minus);
 }

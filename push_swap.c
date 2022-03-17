@@ -6,7 +6,7 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:39:26 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/17 21:12:36 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/17 21:25:35 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 		numarr = ft_split(argv[i++], 32);
 		is_possible(numarr);
 		while (numarr[j] != 0)
-			printf("%d\n", num = ft_atoi(numarr[j++]));
+			num = ft_atoi(numarr[j++]);
 		if (numarr)
 			ft_split_free(numarr, j);
 	}
