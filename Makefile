@@ -6,7 +6,7 @@
 #    By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/02 22:57:09 by hmoon             #+#    #+#              #
-#    Updated: 2022/03/17 21:19:17 by hmoon            ###   ########.fr        #
+#    Updated: 2022/03/18 21:45:43 by hmoon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ RM			:= rm -f
 
 SRCS_DIR	:= ./
 SRCS_NAME	:= push_swap.c\
-				push_swap_util.c\
+				push_swap_util.c stack.c\
 				libft_util_1.c libft_util_2.c
 SRCS		:= $(addprefix $(SRCS_DIR),$(SRCS_NAME))
 OBJS		:= ${SRCS:.c=.o}

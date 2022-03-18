@@ -6,11 +6,25 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:18:50 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/17 21:09:00 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/18 22:05:58 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	*ft_memcpy(void *dst, void *src, size_t n)
+{
+	unsigned char	*temp;
+
+	temp = dst;
+	if (!dst && !src)
+		return (0);
+	while (n--)
+	{
+		*temp++ = *(unsigned char *)src++;
+	}
+	return (dst);
+}
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
