@@ -6,37 +6,50 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:39:26 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/18 22:27:59 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/19 16:26:44 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	parse_num(t_stack *stack, char **argv)
 {
-	char	**numarr;
-	int	i;
-	int	j;
-	size_t	idx;
-	t_stack	a;
+	size_t	i;
+	size_t	j;
+	char	**arr;
+
 	i = 1;
-	idx = 0;
-	if (argc < 2)
-		exit(0);
-	init_stack(&a);
 	while (argv[i] != 0)
 	{
 		j = 0;
-		numarr = ft_split(argv[i++], 32);
-		is_possible(numarr);
-		while (numarr[j] != 0)
-			make_stack(&a, ft_atoi(numarr[j++]));
-		if (numarr)
-			ft_split_free(numarr);
+		arr = ft_split(argv[i++], 32);
+		is_possible(arr);
+		if (arr)
+		{
+			while (arr[j] != 0)
+				make_stack(stack, ft_atoi(arr[j++]));
+			ft_split_free(arr);
+		}
+		else
+			print_error();
 	}
-	is_duplicate(&a);
-	while (idx < a.len)
-		printf("%d\n", a.data[idx++]);
+	is_duplicate(stack);
+	rotate_a(stack);
+}
+
+int	main(int argc, char **argv)
+{
+	t_stack	a;
+	t_stack	b;
+
+	if (argc < 2)
+		print_error();
+	init_stack(&a);
+	init_stack(&b);
+	parse_num(&a, argv);
+	make_lis(&a);
 	free(a.data);
+	free(b.data);
 	return (0);
 }
+

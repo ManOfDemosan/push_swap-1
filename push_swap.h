@@ -6,7 +6,7 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:21:50 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/18 22:25:19 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/19 18:16:36 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,18 @@ void	print_error(void);
 void	init_stack(t_stack *stack);
 void	make_stack(t_stack *stack, int num);
 void	is_duplicate(t_stack *stack);
+void	parse_num(t_stack *stack, char **argv);
+void	rotate_a(t_stack *a);
+void	sa(t_stack *a, int print);
+void	pb(t_stack *a, t_stack *b);
+void	sb(t_stack *b, int print);
+void	pa(t_stack *a, t_stack *b);
+void	ra(t_stack *a, int print);
+void	rb(t_stack *b, int print);
+void	rra(t_stack *a, int print);
+void	rrb(t_stack *b, int print);
+void	ss(t_stack *a, t_stack *b);
+void	rr(t_stack *a, t_stack *b);
+void	rrr(t_stack *a, t_stack *b);
 
 #endif
