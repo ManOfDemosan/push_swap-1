@@ -6,7 +6,7 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:39:26 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/19 16:26:44 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/19 20:50:42 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int argc, char **argv)
 	init_stack(&a);
 	init_stack(&b);
 	parse_num(&a, argv);
-	make_lis(&a);
+	push_swap(&a, &b);
 	free(a.data);
 	free(b.data);
 	return (0);

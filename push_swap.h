@@ -6,7 +6,7 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:21:50 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/19 18:16:36 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/19 21:29:09 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 typedef struct s_stack
 {
 	int			*data;
-	size_t		len;
-	size_t		size;
+	int			len;
+	int			size;
 }				t_stack;
 
 void	*ft_memcpy(void *dst, void *src, size_t n);
@@ -53,5 +53,8 @@ void	rrb(t_stack *b, int print);
 void	ss(t_stack *a, t_stack *b);
 void	rr(t_stack *a, t_stack *b);
 void	rrr(t_stack *a, t_stack *b);
+void	push_swap(t_stack *a, t_stack *b);
+
+
 
 #endif

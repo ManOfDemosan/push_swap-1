@@ -6,7 +6,7 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 21:08:47 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/18 22:25:07 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/19 20:53:42 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	print_error(void)
 
 void	is_duplicate(t_stack *stack)
 {
-	size_t	i;
-	size_t	j;
-	int		temp;
+	int	i;
+	int	j;
+	int	temp;
 
 	i = 0;
 	j = 0;

@@ -6,7 +6,7 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 13:08:10 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/19 16:02:13 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/19 21:40:47 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	sa(t_stack *a, int print)
 {
 	int	temp;
-	size_t	idx;
+	int	idx;
 
 	idx = a->len - 1;
 	if (a->len >= 2)
@@ -31,7 +31,7 @@ void	sa(t_stack *a, int print)
 void	sb(t_stack *b, int print)
 {
 	int	temp;
-	size_t	idx;
+	int	idx;
 
 	idx = b->len - 1;
 	if (b->len >= 2)
@@ -65,13 +65,13 @@ void	pb(t_stack *a, t_stack *b)
 void	ra(t_stack *a, int print)
 {
 	int		temp;
-	size_t	idx;
+	int	idx;
 
 	idx = 0;
 	temp = a->data[0];
 	if (a->len > 1)
 	{
-		while (idx < a->len - 1)
+		while (idx < a->len)
 		{
 			a->data[idx] = a->data[idx + 1];
 			idx++;
@@ -85,13 +85,13 @@ void	ra(t_stack *a, int print)
 void	rb(t_stack *b, int print)
 {
 	int		temp;
-	size_t	idx;
+	int	idx;
 
 	idx = 0;
 	temp = b->data[0];
 	if (b->len > 1)
 	{
-		while (idx < b->len - 1)
+		while (idx < b->len)
 		{
 			b->data[idx] = b->data[idx + 1];
 			idx++;
@@ -104,14 +104,14 @@ void	rb(t_stack *b, int print)
 
 void	rra(t_stack *a, int print)
 {
-	int		temp;
-	size_t	idx;
+	int	temp;
+	int	idx;
 
 	idx = 0;
 	temp = a->data[a->len - 1];
 	if (a->len > 1)
 	{
-		while (idx < a->len - 1)
+		while (idx < a->len)
 		{
 			a->data[a->len - 1 - idx] = a->data[a->len - 2 - idx];
 			idx++;
@@ -119,19 +119,19 @@ void	rra(t_stack *a, int print)
 		a->data[0] = temp;
 	}
 	if (print == 0)
-		write(1, "rra\n", 3);
+		write(1, "rra\n", 4);
 }
 
 void	rrb(t_stack *b, int print)
 {
-	int		temp;
-	size_t	idx;
+	int	temp;
+	int	idx;
 
 	idx = 0;
 	temp = b->data[b->len - 1];
 	if (b->len > 1)
 	{
-		while (idx < b->len - 1)
+		while (idx < b->len)
 		{
 			b->data[b->len - 1 - idx] = b->data[b->len - 2 - idx];
 			idx++;
@@ -139,7 +139,7 @@ void	rrb(t_stack *b, int print)
 		b->data[0] = temp;
 	}
 	if (print == 0)
-		write(1, "rrb\n", 3);
+		write(1, "rrb\n", 4);
 }
 
 void	ss(t_stack *a, t_stack *b)
