@@ -6,7 +6,7 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 17:13:37 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/23 17:54:41 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/23 20:18:28 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,6 @@ int	main(int argc, char **argv)
 	init_stack(&a);
 	parse_num(&a, argv);
 	is_duplicate(&a);
-	if (is_sorted(&a))
-	{
-		write(1, "OK\n", 3);
-		exit (0);
-	}
 	make_stack_b(&b, a.len);
 	while (get_next_line(0, &command))
 	{

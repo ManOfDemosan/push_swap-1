@@ -6,7 +6,7 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 10:19:58 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/23 17:45:58 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/23 20:23:44 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,17 @@ static int	read_buff(int fd, char **save)
 	if (ret < 0 || buff == NULL)
 	{
 		ft_freearr(buff);
-		return (-1);
+		exit(1);
 	}
 	buff[ret] = '\0';
 	return (buff_join(ret, save, buff));
 }
 
-static void	division_plus(char **save, char **line, int ret)
+static int	division_plus(char **save, char **line, int ret, int i)
 {
-	char	*output;
 	char	*backup;
-	int		i;
+	char	*output;
 
-	i = 0;
 	if (ret > 0)
 	{
 		while ((*save)[i] != '\n')
@@ -65,18 +63,19 @@ static void	division_plus(char **save, char **line, int ret)
 		if (output == NULL)
 		{
 			ft_freearr(*save);
-			return ;
+			return (-1);
 		}
 		*line = output;
 		backup = ft_strdup(*save + i + 1);
 		if (backup == NULL)
 		{
 			ft_freearr(*save);
-			return ;
+			return (-1);
 		}
 		ft_freearr(*save);
 		*save = backup;
 	}
+	return (ret);
 }
 
 static int	division_zero(char **save, char **line, int ret)
@@ -101,7 +100,7 @@ int	get_next_line(int fd, char **line)
 
 	if (fd < 0 || fd > OPEN_MAX || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	if (save [fd] == NULL)
+	if (save[fd] == NULL)
 	{
 		save[fd] = ft_strdup("");
 		if (save[fd] == NULL)
@@ -111,6 +110,6 @@ int	get_next_line(int fd, char **line)
 	while (ret > 0 && (ft_strchr(save[fd], '\n') == 0))
 		ret = read_buff(fd, &save[fd]);
 	ret = division_zero(&save[fd], line, ret);
-	division_plus(&save[fd], line, ret);
+	ret = division_plus(&save[fd], line, ret, 0);
 	return (ret);
 }

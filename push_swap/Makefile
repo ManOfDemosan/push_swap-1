@@ -6,12 +6,12 @@
 #    By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 22:37:29 by hmoon             #+#    #+#              #
-#    Updated: 2022/03/23 17:27:38 by hmoon            ###   ########.fr        #
+#    Updated: 2022/03/23 20:22:48 by hmoon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			:= push_swap
-NAME_BONUS		:= checker
+BONUS			:= checker
 CC				:= cc
 CFLAGS			:= -Wall -Wextra -Werror
 RM				:= rm -f
@@ -38,17 +38,24 @@ SRCS_BONUS			:= $(addprefix ./srcs/, \
 					util_stack.c)
 OBJS_FILE_BONUS		:= $(SRCS_BONUS:.c=.o)
 
+ifdef CHECKER
+		OBJ_FILE		= $(OBJS_FILE_BONUS)
+else
+		OBJ_FILE		= $(OBJS_FILE)
+endif
+
 .PHONY	: all
-all		: libft $(NAME) $(NAME_BONUS)
+all		: libft $(NAME)
 
-$(NAME)	: $(OBJS_FILE) $(INCLUDE_FILE)
-		$(CC) $(CFLAGS) $(LIBFT_LIB) $(OBJS_FILE) -o $(NAME)
-
-$(NAME_BONUS) : $(OBJS_FILE_BONUS) $(INCLUDE_FILE)
-		$(CC) $(CFLAGS) $(LIBFT_LIB) $(OBJS_FILE_BONUS) -o $(NAME_BONUS)
+$(NAME)	: $(OBJ_FILE) $(INCLUDE_FILE)
+		$(CC) $(CFLAGS) $(LIBFT_LIB) $(OBJ_FILE) -o $(NAME)
 
 %.o		: %.c
 		$(CC) $(CFLAGS) -I$(INCLUDE) -I$(LIBFT_DIR) -c $< -o $@
+
+.PHONY	: bonus
+bonus	:
+		@make CHECKER=1 all
 
 .PHONY	: libft
 libft	:
@@ -57,12 +64,12 @@ libft	:
 .PHONY	: clean
 clean	:
 		@make -C ./libft clean
-		@$(RM) $(OBJS_FILE)
+		@$(RM) $(OBJS_FILE) $(OBJS_FILE_BONUS)
 
 .PHONY	: fclean
 fclean	: clean
 		@make -C ./libft fclean
-		@$(RM) $(NAME)
+		@$(RM) $(NAME) $(BONUS)
 
 .PHONY	: re
 re		: fclean all
