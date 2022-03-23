@@ -3,49 +3,75 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+         #
+#    By: hmoon <hmoon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/03/02 22:57:09 by hmoon             #+#    #+#              #
-#    Updated: 2022/03/23 01:25:01 by hmoon            ###   ########.fr        #
+#    Created: 2022/03/22 22:37:29 by hmoon             #+#    #+#              #
+#    Updated: 2022/03/23 22:47:55 by hmoon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= push_swap
-CC			:= cc
-CFLAGS		:= -Wall -Wextra -Werror
-RM			:= rm -f
+NAME			:= push_swap
+BONUS			:= checker
+CC				:= cc
+CFLAGS			:= -Wall -Wextra -Werror
+RM				:= rm -f
 
-SRCS_DIR	:= ./
-SRCS_NAME	:= push_swap.c\
-				push_swap_util.c stack.c\
-				command.c solve.c\
-				libft_util_1.c libft_util_2.c
-SRCS		:= $(addprefix $(SRCS_DIR),$(SRCS_NAME))
-OBJS		:= ${SRCS:.c=.o}
+LIBFT_DIR		:= ./libft
+LIBFT_LIB		:= ./libft/libft.a
 
-HEADER_DIR	:= ./
-HEADER_FILE	:= push_swap.h
-HEADER		:= $(addprefix $(HEADER_DIR),$(HEADER_FILE))
-INCLUDE		:= -I$(HEADER)
+INCLUDE			:= ./include/
+INCLUDE_FILE	:= $(addprefix $(INCLUDE), push_swap.h)
 
+SRCS			:= $(addprefix ./srcs/, \
+					push_swap.c parse_argv.c \
+					print_error.c \
+					make_stack.c order_stack.c \
+					util_stack.c solve.c \
+					solve_small.c)
+OBJS_FILE		:= $(SRCS:.c=.o)
 
-$(NAME)	: $(OBJS)
-		$(CC) $(CFLAGS) $(INCLUDE) $(OBJS) -g -o $(NAME)
+SRCS_BONUS			:= $(addprefix ./srcs/, \
+					checker.c \
+					parse_argv.c \
+					print_error.c \
+					make_stack.c order_stack.c \
+					util_stack.c)
+OBJS_FILE_BONUS		:= $(SRCS_BONUS:.c=.o)
 
-
-%.o		: %.c $(HEADER)
-		$(CC) $(CFLAGS) $(INCLUDE) -c -g $< -o $@
+ifdef CHECKER
+		OBJ_FILE		= $(OBJS_FILE_BONUS)
+		NAMES			= $(BONUS)
+else
+		OBJ_FILE		= $(OBJS_FILE)
+		NAMES			= $(NAME)
+endif
 
 .PHONY	: all
-all		: $(NAME)
+all		: libft $(NAMES)
+
+$(NAMES)	: $(OBJ_FILE) $(INCLUDE_FILE)
+		$(CC) $(CFLAGS) $(LIBFT_LIB) $(OBJ_FILE) -g -o $(NAMES)
+
+%.o		: %.c
+		$(CC) $(CFLAGS) -I$(INCLUDE) -I$(LIBFT_DIR) -g -c $< -o $@
+
+.PHONY	: bonus
+bonus	:
+		@make CHECKER=1 all
+
+.PHONY	: libft
+libft	:
+		@make -C ./libft all
 
 .PHONY	: clean
 clean	:
-		$(RM) $(OBJS)
+		@make -C ./libft clean
+		@$(RM) $(OBJS_FILE) $(OBJS_FILE_BONUS)
 
 .PHONY	: fclean
 fclean	: clean
-		$(RM) $(NAME)
+		@make -C ./libft fclean
+		@$(RM) $(NAME) $(BONUS)
 
 .PHONY	: re
 re		: fclean all

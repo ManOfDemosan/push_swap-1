@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hmoon <hmoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 17:13:37 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/23 20:18:28 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/23 22:51:23 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,15 @@ int	main(int argc, char **argv)
 	t_stack	a;
 	t_stack	b;
 	char	*command;
+	int		len;
 
-	if (argc < 3)
+	if (argc < 2)
 		return (0);
 	init_stack(&a);
 	parse_num(&a, argv);
 	is_duplicate(&a);
 	make_stack_b(&b, a.len);
+	len = 1;
 	while (get_next_line(0, &command))
 	{
 		order(&a, &b, get_order(command), NOPRINT);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hmoon <hmoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 10:19:58 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/23 20:23:44 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/23 22:51:20 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ static int	read_buff(int fd, char **save)
 	if (!buff)
 		buff = NULL;
 	ret = read(fd, buff, BUFFER_SIZE);
-	if (ret < 0 || buff == NULL)
+	if (ret < 0)
 	{
 		ft_freearr(buff);
-		exit(1);
+		return (-1);
 	}
 	buff[ret] = '\0';
 	return (buff_join(ret, save, buff));

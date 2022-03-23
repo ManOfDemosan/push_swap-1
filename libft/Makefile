@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+         #
+#    By: hmoon <hmoon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/04 22:45:21 by hmoon             #+#    #+#              #
-#    Updated: 2022/03/23 17:32:58 by hmoon            ###   ########.fr        #
+#    Updated: 2022/03/23 22:48:00 by hmoon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ $(NAME)		: $(OBJS)
 			@ar rcs $@ $^
 
 *.o			: *.c
-			$(CC) $(CFLAGS) -c $< -o $@
+			$(CC) $(CFLAGS) -c -g $< -o $@
 
 .PHONY		: clean
 clean:

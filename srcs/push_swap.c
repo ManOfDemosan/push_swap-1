@@ -3,39 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hmoon <hmoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 19:39:26 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/19 20:50:42 by hmoon            ###   ########.fr       */
+/*   Created: 2022/03/22 23:03:55 by hmoon             #+#    #+#             */
+/*   Updated: 2022/03/23 22:18:18 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void	parse_num(t_stack *stack, char **argv)
-{
-	size_t	i;
-	size_t	j;
-	char	**arr;
-
-	i = 1;
-	while (argv[i] != 0)
-	{
-		j = 0;
-		arr = ft_split(argv[i++], 32);
-		is_possible(arr);
-		if (arr)
-		{
-			while (arr[j] != 0)
-				make_stack(stack, ft_atoi(arr[j++]));
-			ft_split_free(arr);
-		}
-		else
-			print_error();
-	}
-	is_duplicate(stack);
-	rotate_a(stack);
-}
+#include "../include/push_swap.h"
 
 int	main(int argc, char **argv)
 {
@@ -43,13 +18,16 @@ int	main(int argc, char **argv)
 	t_stack	b;
 
 	if (argc < 2)
-		print_error();
+		return (0);
 	init_stack(&a);
-	init_stack(&b);
 	parse_num(&a, argv);
+	is_duplicate(&a);
+	if (is_sorted(&a))
+		exit(0);
+	make_index(&a);
+	make_stack_b(&b, a.len);
 	push_swap(&a, &b);
 	free(a.data);
 	free(b.data);
 	return (0);
 }
-
