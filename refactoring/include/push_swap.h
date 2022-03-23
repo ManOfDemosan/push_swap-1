@@ -6,7 +6,7 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:11:46 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/23 03:12:01 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/23 17:05:54 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 
-# define TRUE 1
-# define FALSE 0
+# define PRINT 1
+# define NOPRINT 0
 
 # define INT_MAX 2147483647LL
 # define INT_MIN -2147483648LL
@@ -49,15 +49,20 @@ void		is_sorted(t_stack *a);
 void		init_stack(t_stack *stack);
 
 void		make_stack_b(t_stack *b, int size);
-void		make_stack_a(t_stack *stack, int num);
+void		make_stack_a(t_stack *a, int num);
 void		make_index(t_stack *a);
 
-void		push_back(t_stack *stack, int num);
-void		pop_back(t_stack *stack);
-void		push_stack(t_stack *stack, int num);
+int			is_empty(t_stack *stack);
+int			bottom_stack(t_stack *stack);
+int			top_stack(t_stack *stack);
 
+void		order(t_stack *a, t_stack *b, enum e_order set, int printable);
 
-void		print_error();
+void		print_error(void);
 void		parse_num(t_stack *stack, char **argv);
+
+void		push_swap(t_stack *a, t_stack *b);
+void		solve_small(t_stack *a, t_stack *b);
+void		is_duplicate(t_stack *stack);
 
 #endif

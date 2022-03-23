@@ -6,7 +6,7 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 02:10:53 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/23 03:02:23 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/23 15:43:08 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	make_index(t_stack *a)
 		{
 			if (a->data[i] > a->data[j])
 				temp[i]++;
-			// printf("a->data[%d] == %d\n", i, a->data[i]);
 			j++;
 		}
 		i++;
@@ -64,21 +63,29 @@ void	make_stack_b(t_stack *b, int size)
 	b->size = size;
 }
 
-void	make_stack_a(t_stack *stack, int num)
+void	make_stack_a(t_stack *a, int num)
 {
 	int	*temp;
+	int	i;
 
-	if (stack->len >= stack->size)
+	i = a->len;
+	if (a->len >= a->size)
 	{
-		temp = malloc(sizeof(int) * (stack->size << 1));
+		temp = malloc(sizeof(int) * (a->size << 1));
 		if (!temp)
 			print_error();
-		ft_memcpy(temp, stack->data, (stack->len * sizeof(int)));
-		free(stack->data);
-		stack->data = temp;
-		stack->size <<= 1;
+		ft_memcpy(temp, a->data, (a->len * sizeof(int)));
+		free(a->data);
+		a->data = temp;
+		a->size <<= 1;
 	}
-	push_stack(stack, num);
+	while (i > 0)
+	{
+		a->data[i] = a->data[i - 1];
+		i--;
+	}
+	a->data[0] = num;
+	a->len++;
 }
 
 void	init_stack(t_stack *stack)

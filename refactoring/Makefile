@@ -6,7 +6,7 @@
 #    By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/22 22:37:29 by hmoon             #+#    #+#              #
-#    Updated: 2022/03/23 02:11:46 by hmoon            ###   ########.fr        #
+#    Updated: 2022/03/23 16:50:18 by hmoon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,20 +22,21 @@ INCLUDE			:= ./include/
 INCLUDE_FILE	:= $(addprefix $(INCLUDE), push_swap.h)
 
 SRCS			:= $(addprefix ./srcs/, \
-					push_swap.c \
+					push_swap.c parse_argv.c \
 					print_error.c \
-					make_stack.c set_stack.c \
-					parse_argv.c)
+					make_stack.c order_stack.c \
+					util_stack.c solve.c \
+					solve_small.c)
 OBJS_FILE		:= $(SRCS:.c=.o)
 
 .PHONY	: all
 all		: libft $(NAME)
 
 $(NAME)	: $(OBJS_FILE) $(INCLUDE_FILE)
-		$(CC) $(CFLAGS) $(LIBFT_LIB) $(OBJS_FILE) -o $(NAME)
+		$(CC) $(CFLAGS) $(LIBFT_LIB) $(OBJS_FILE) -g -o $(NAME)
 
 %.o		: %.c
-		$(CC) $(CFLAGS) -I$(INCLUDE) -I$(LIBFT_DIR) -c $< -o $@
+		$(CC) $(CFLAGS) -I$(INCLUDE) -I$(LIBFT_DIR) -c -g $< -o $@
 
 .PHONY	: libft
 libft	:

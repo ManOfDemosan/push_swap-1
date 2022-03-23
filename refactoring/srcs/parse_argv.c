@@ -6,13 +6,13 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:48:20 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/23 03:03:35 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/23 17:03:37 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void ft_split_free(char **arr)
+static void	ft_split_free(char **arr)
 {
 	int	i;
 
@@ -20,7 +20,7 @@ static void ft_split_free(char **arr)
 	while (arr[i] != 0)
 	{
 		free(arr[i]);
-		arr[i]= NULL;
+		arr[i] = NULL;
 		i++;
 	}
 	free(arr);
@@ -52,7 +52,7 @@ static long long	ft_atol(const char *str)
 	return (ret * minus);
 }
 
-static void	is_duplicate(t_stack *stack)
+void	is_duplicate(t_stack *stack)
 {
 	int	i;
 	int	j;
@@ -122,5 +122,4 @@ void	parse_num(t_stack *stack, char **argv)
 		else
 			print_error();
 	}
-	is_duplicate(stack);
 }
