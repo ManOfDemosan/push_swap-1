@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 23:03:55 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/23 17:04:13 by hmoon            ###   ########.fr       */
+/*   Created: 2021/05/28 20:49:37 by hmoon             #+#    #+#             */
+/*   Updated: 2022/01/17 16:56:56 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strdup(const char *s1)
 {
-	t_stack	a;
-	t_stack	b;
+	char		*temp;
+	size_t		i;
 
-	if (argc < 3)
-		return (0);
-	init_stack(&a);
-	parse_num(&a, argv);
-	is_duplicate(&a);
-	is_sorted(&a);
-	make_index(&a);
-	make_stack_b(&b, a.len);
-	push_swap(&a, &b);
-	free(a.data);
-	free(b.data);
-	return (0);
+	i = 0;
+	temp = (char *)malloc((ft_strlen(s1) + 1) * sizeof(char));
+	if (!temp)
+		return (NULL);
+	while (s1[i] != '\0')
+	{
+		temp[i] = s1[i];
+		i++;
+	}
+	temp[i] = '\0';
+	return (temp);
 }

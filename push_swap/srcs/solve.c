@@ -6,7 +6,7 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:26:24 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/23 17:00:31 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/23 17:12:51 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ static void	find_pivot(t_stack *a, t_stack *b)
 {
 	int	pivot;
 
-	pivot = -2;
+	pivot = 15;
+	if (a->len > 250)
+		pivot += 15;
 	make_chunks(a, b, pivot);
 	put_b_to_a(a, b);
 }

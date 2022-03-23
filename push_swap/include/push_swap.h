@@ -6,7 +6,7 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:11:46 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/23 17:05:54 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/23 17:18:53 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ enum	e_order
 	rrr
 };
 
-void		is_sorted(t_stack *a);
+int			is_sorted(t_stack *a);
 void		init_stack(t_stack *stack);
 
 void		make_stack_b(t_stack *b, int size);

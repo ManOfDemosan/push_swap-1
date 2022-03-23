@@ -6,14 +6,13 @@
 /*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 02:10:53 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/23 15:43:08 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/23 17:54:40 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include <stdio.h>
 
-void	is_sorted(t_stack *a)
+int	is_sorted(t_stack *a)
 {
 	int	i;
 
@@ -21,10 +20,10 @@ void	is_sorted(t_stack *a)
 	while (i < a->len - 1)
 	{
 		if (a->data[i] < a->data[i + 1])
-			return ;
+			return (0);
 		i++;
 	}
-	exit(0);
+	return (1);
 }
 
 void	make_index(t_stack *a)
