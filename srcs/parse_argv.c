@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_argv.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hmoon <hmoon@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: hmoon <hmoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 00:48:20 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/23 17:03:37 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/25 19:33:11 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,18 @@ static void	is_possible(char **str)
 	int	j;
 
 	i = 0;
+	if (*str == NULL || !str)
+		print_error();
 	while (str[i] != 0)
 	{
 		j = 0;
 		while (str[i][j] != 0)
 		{
 			if (!((str[i][j] >= '0' && str[i][j] <= '9') || \
-			(str[i][j] == '+' || str[i][j] == '-')))
+				(str[i][j] == '+' || str[i][j] == '-')))
+				print_error();
+			if ((str[i][j] == '+' || str[i][j] == '-') && \
+				(str[i][j + 1] == '\0'))
 				print_error();
 			if (j > 0 && (str[i][j] == '+' || str[i][j] == '-'))
 				print_error();
@@ -105,21 +110,18 @@ void	parse_num(t_stack *stack, char **argv)
 	i = 1;
 	while (argv[i] != 0)
 	{
+		if (ft_strcmp(argv[i], "") == 0)
+			print_error();
 		j = 0;
 		arr = ft_split(argv[i++], 32);
 		is_possible(arr);
-		if (arr)
+		while (arr[j] != 0)
 		{
-			while (arr[j] != 0)
-			{
-				num = ft_atol(arr[j++]);
-				if (num > INT_MAX || num < INT_MIN)
-					print_error();
-				make_stack_a(stack, (int)num);
-			}
-			ft_split_free(arr);
+			num = ft_atol(arr[j++]);
+			if (num > INT_MAX || num < INT_MIN)
+				print_error();
+			make_stack_a(stack, (int)num);
 		}
-		else
-			print_error();
+		ft_split_free(arr);
 	}
 }
