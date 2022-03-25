@@ -6,7 +6,7 @@
 /*   By: hmoon <hmoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 17:13:37 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/23 22:51:23 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/25 17:08:48 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,15 @@ int	main(int argc, char **argv)
 	t_stack	a;
 	t_stack	b;
 	char	*command;
-	int		len;
 
 	if (argc < 2)
 		return (0);
 	init_stack(&a);
 	parse_num(&a, argv);
 	is_duplicate(&a);
+	if (a.len == 0)
+		print_error();
 	make_stack_b(&b, a.len);
-	len = 1;
 	while (get_next_line(0, &command))
 	{
 		order(&a, &b, get_order(command), NOPRINT);

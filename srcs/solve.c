@@ -6,7 +6,7 @@
 /*   By: hmoon <hmoon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 14:26:24 by hmoon             #+#    #+#             */
-/*   Updated: 2022/03/23 22:32:56 by hmoon            ###   ########.fr       */
+/*   Updated: 2022/03/25 16:46:22 by hmoon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,13 @@ static void	put_b_to_a(t_stack *a, t_stack *b)
 
 static void	find_pivot(t_stack *a, t_stack *b)
 {
-	int	pivot;
+	int		pivot;
+	double	alpha;
+	double	beta;
 
-    double  alpha = 5.29427309e-7;
-    double  beta = 0.024;
-	
-    pivot = alpha * (a->len * a->len) + beta * (a->len) + 15;
+	alpha = 5.29427309e-7;
+	beta = 0.024;
+	pivot = (alpha * (a->len * a->len)) + (beta * (a->len)) + 15;
 	make_chunks(a, b, pivot);
 	put_b_to_a(a, b);
 }
